@@ -2,7 +2,10 @@
 
 namespace NewClarity\AMP\AmpElements;
 
+use NewClarity\AMP;
 use NewClarity\AMP\Shared\Base;
+use NewClarity\AMP\Shared\Util;
+use DOMElement;
 
 class AmpElement extends Base {
 
@@ -229,5 +232,17 @@ HTML;
 	function element_prototype() {
 		return '<element></element>';
 	}
+
+	/**
+	 * @param DOMElement $node
+	 *
+	 * @return string
+	 */
+	function import_html_node( $node ) {
+
+		return '';
+
+	}
+
 
 }

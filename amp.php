@@ -5,6 +5,7 @@
  */
 namespace NewClarity;
 
+use NewClarity\AMP\Shared\Util;
 use wp;
 use Exception;
 
@@ -111,7 +112,7 @@ class AMP {
 	 */
 	function _shutdown_1() {
 		$html = ob_get_clean();
-		// Convert to AMP here
+		$html = Util::convert_to_amphtml( $html );
 		echo $html;
 	}
 

@@ -200,7 +200,7 @@ class AMP {
 	 *
 	 * @throws Exception
 	 */
-	function check_amp_element( $element_name ) {
+	function validate_element_name( $element_name ) {
 		if ( ! isset( $this->_valid_amp_elements[ $element_name ] ) ) {
 			$amp_elements = implode( ', ', array_keys( $this->_valid_amp_elements ) );
 			$message = sprintf( '%s is not a valid AMP element name. Please select one of: %s', $element_name, $amp_elements );
@@ -220,6 +220,8 @@ class AMP {
 	function register_amp_element( $element_name, $class_path ) {
 		do {
 
+			$this->validate_element_name( $element_name );
+
 			if ( $element_name !== strtolower( preg_replace( '#[^\da-z]$#i', '', $element_name ) ) ) {
 				break;
 			}
@@ -230,8 +232,6 @@ class AMP {
 			$this->_valid_amp_elements[ $element_name ] = $class_path;
 
 		} while ( false );
-
-		$this->check_amp_element( $element_name );
 
 	}
 

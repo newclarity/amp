@@ -380,4 +380,21 @@ class Util {
 
 	}
 
+	/**
+	 * Return directory path for site.
+	 *
+	 * If site is hosted in a subdirectory, e.g. example.com/blog/:
+	 *   - Provides a slash prefixed directory path, e.g. `/blog`
+	 *   - Empty string if not
+	 *
+	 * @return string
+	 */
+	function site_directory() {
+		$path = preg_quote( trim( parse_url( home_url(), PHP_URL_PATH ), '/' ) );
+		if ( ! empty( $path ) ) {
+			$path = "/{$path}";
+		}
+		return $path;
+	}
+
 }

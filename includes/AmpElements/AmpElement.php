@@ -64,13 +64,15 @@ class AmpElement extends Base {
 	 */
 	function __construct( $args = array() ) {
 
-		$amp = newclarity_amp();
+		if ( ! Util::check_args( $args, 'amp', 'method=validate_element_name' ) ) {
 
-		$amp->check_amp_element( static::ELEMENT_NAME );
+			$args[ 'amp' ] = new AMP();
+
+		}
 
 		$this->element_name = static::ELEMENT_NAME;
 
-		$this->_amp_version = $amp->amp_version;
+		$this->_amp_version = $args[ 'amp' ]->amp_version;
 
 		parent::__construct( $args );
 

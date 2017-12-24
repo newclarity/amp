@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: NewClarity AMP
- * Description: Google AMP support in WordPress for Professional Publishers and Enterprise Digital Media. Optimized for enterprise development and deployment best practices.
+ * Description: Google AMP plugin for Professional Publishers and Enterprise Digital Media using WordPress. Optimized for enterprise development and deployment best practices.
  */
 namespace NewClarity;
 

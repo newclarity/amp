@@ -2,6 +2,7 @@
 
 namespace NewClarity\AMP\Prototype;
 
+use NewClarity\AMP\Shared\Util;
 use DOMDocument;
 
 abstract class Prototype {
@@ -39,20 +40,14 @@ abstract class Prototype {
 	 *
 	 * @param string $prototype
 	 *
-	 * @return DOMDocument|false Returns DOMDocument, or false if conversion failed.
+	 * @return DOMDocument|null Returns DOMDocument, or null if conversion failed.
 	 */
-	static function get_prototype_dom( $prototype ) {
-
-		$result = null;
-
-		$libxml_previous_state = libxml_use_internal_errors( true );
+	static function get_dom( $prototype ) {
 
 		/**
 		 * Remove trailing whitespace to ensure all text nodes are relevant.
 		 */
 		$prototype = preg_replace( '#>\s+#', '>', $prototype );
-
-		$dom = new DOMDocument;
 
 		/*
 		 * Wrap in dummy tags, since XML needs one parent node.
@@ -62,15 +57,7 @@ abstract class Prototype {
 		 * See: http://php.net/manual/en/domdocument.loadhtml.php#78243
 		 */
 		$head   = '<head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head>';
-		$result = $dom->loadHTML( "<html>{$head}<body>{$prototype}</body></html>" );
+		return Util::get_html_dom( "<html>{$head}<body>{$prototype}</body></html>" );
 
-		if ( ! $result ) {
-			$dom = null;
-		}
-
-		libxml_clear_errors();
-		libxml_use_internal_errors( $libxml_previous_state );
-
-		return $dom;
 	}
 }

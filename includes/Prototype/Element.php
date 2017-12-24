@@ -102,7 +102,7 @@ class Element extends Prototype {
 			 */
 			$this->prototype = preg_replace( '#>\s+#', '>', $this->prototype );
 
-			$dom = Prototype::get_prototype_dom( $this->prototype );
+			$dom = Prototype::get_dom( $this->prototype );
 
 			/**
 			 * We want the first child of the body tag.

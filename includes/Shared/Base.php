@@ -2,6 +2,11 @@
 
 namespace NewClarity\AMP\Shared;
 
+use NewClarity\AMP\HtmlElements\HtmlElement;
+use NewClarity\AMP\AmpElements\AmpElement;
+
+use Exception;
+
 abstract class Base {
 
 	/**
@@ -46,6 +51,34 @@ abstract class Base {
 			}
 
 		}
+
+	}
+
+	/**
+	 * Get the full classname for a given HTML or AMP tag
+	 *
+	 * @note The classes are not validated. They may not exist, which is expected.
+	 *
+	 * @param string $tag_name
+	 *
+	 * @return string
+	 * @throws Exception
+	 */
+	static function get_classname( $tag_name ) {
+
+		$called_class = get_called_class();
+
+		if ( ! preg_match( '#(Amp|Html|Element)$#', $called_class ) ) {
+			$message = sprintf(
+				'%s is only intended to be called by classes %s or %s',
+				__METHOD__,
+				HtmlElement::class,
+				AmpElement::class
+			);
+			throw new Exception( $message );
+		}
+
+		return "{$called_class}\\\\{$tag_name}";
 
 	}
 

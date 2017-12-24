@@ -13,15 +13,6 @@ class AmpElement extends Base {
 	const IS_CUSTOM = false;
 
 	/**
-	 * Flag to specify if AMP element is self closing.
-	 *
-	 * @note Override in child class if needed.
-	 *
-	 * @var bool
-	 */
-	const SELF_CLOSING = false;
-
-	/**
 	 * Stores the javascript file used for <script> tag output for the current AMP element.
 	 *
 	 * @var string

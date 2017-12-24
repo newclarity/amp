@@ -85,7 +85,7 @@ class AMP {
 		 */
 		global $wp;
 
-		$path = $this->site_directory();
+		$path = Util::site_directory();
 
 		if ( preg_match( "#^{$path}/{$this->url_slug}(.+)$#", $_SERVER[ 'REQUEST_URI' ], $match ) ) {
 			$_SERVER[ 'REQUEST_URI' ] = "{$path}{$match[ 1 ]}";
@@ -236,23 +236,6 @@ class AMP {
 	}
 
 	/**
-	 * Return directory path for site.
-	 *
-	 * If site is hosted in a subdirectory, e.g. example.com/blog/:
-	 *   - Provides a slash prefixed directory path, e.g. `/blog`
-	 *   - Empty string if not
-	 *
-	 * @return string
-	 */
-	function site_directory() {
-		$path = preg_quote( trim( parse_url( home_url(), PHP_URL_PATH ), '/' ) );
-		if ( ! empty( $path ) ) {
-			$path = "/{$path}";
-		}
-		return $path;
-	}
-
-	/**
 	 * @return string
 	 */
 	function amphtml_url() {
@@ -266,7 +249,7 @@ class AMP {
 			 *
 			 * @example `/blog`
 			 */
-			$subdir = $this->site_directory();
+			$subdir = Util::site_directory();
 
 			/**
 			 * Strip off $subdir if exists

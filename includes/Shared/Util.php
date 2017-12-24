@@ -389,7 +389,7 @@ class Util {
 	 *
 	 * @return string
 	 */
-	function site_directory() {
+	static function site_directory() {
 		$path = preg_quote( trim( parse_url( home_url(), PHP_URL_PATH ), '/' ) );
 		if ( ! empty( $path ) ) {
 			$path = "/{$path}";

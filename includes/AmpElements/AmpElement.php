@@ -3,11 +3,11 @@
 namespace NewClarity\AMP\AmpElements;
 
 use NewClarity\AMP;
-use NewClarity\AMP\Shared\Base;
+use NewClarity\AMP\Shared\Element;
 use NewClarity\AMP\Shared\Util;
 use DOMElement;
 
-class AmpElement extends Base {
+class AmpElement extends Element {
 
 	const ELEMENT_NAME = null;
 	const IS_CUSTOM = false;

@@ -7,7 +7,7 @@ use NewClarity\AMP\AmpElements\AmpElement;
 
 use Exception;
 
-abstract class Base {
+abstract class Element {
 
 	/**
 	 * @var array Capture any extra $args passed for which there are no properties.
@@ -77,6 +77,11 @@ abstract class Base {
 			);
 			throw new Exception( $message );
 		}
+
+		/**
+		 * Tags has dashes. Class names have underscores. Convert!
+		 */
+		$tag_name = str_replace( '-', '_', $tag_name );
 
 		return "{$called_class}\\\\{$tag_name}";
 
